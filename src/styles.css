@@ -41,10 +41,158 @@ button {
   min-height: 100vh;
 }
 
+/* ============================================================================
+   ANIMATIONS & KEYFRAMES
+   ============================================================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(84, 245, 196, 0.4), 0 30px 60px rgba(3, 10, 17, 0.42);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(84, 245, 196, 0.6), 0 30px 60px rgba(3, 10, 17, 0.42);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotateRing {
+  from {
+    transform: scale(1.2) rotate(0deg);
+  }
+  to {
+    transform: scale(1.2) rotate(360deg);
+  }
+}
+
+@keyframes orbitSmall {
+  from {
+    transform: scale(1.2) rotate(0deg);
+  }
+  to {
+    transform: scale(1.2) rotate(-360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(156, 255, 228, 0.4), 0 0 20px rgba(92, 189, 216, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(156, 255, 228, 0.8), 0 0 40px rgba(92, 189, 216, 0.4);
+  }
+}
+
+/* ============================================================================
+   LAYOUT & CORE STYLES
+   ============================================================================ */
+
 .app-shell {
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 20px 64px;
+  animation: fadeIn 0.8s ease-out;
 }
 
 .topbar {
@@ -53,6 +201,7 @@ button {
   justify-content: space-between;
   gap: 20px;
   padding: 18px 0 28px;
+  animation: slideInDown 0.6s ease-out;
 }
 
 .brand-wrap {
@@ -71,6 +220,13 @@ button {
   color: #021a28;
   font-weight: 800;
   box-shadow: 0 10px 30px rgba(76, 214, 177, 0.28);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: scaleIn 0.6s ease-out 0.1s both;
+}
+
+.brand-mark:hover {
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 0 16px 40px rgba(76, 214, 177, 0.4);
 }
 
 .brand-wrap h1 {
@@ -78,6 +234,7 @@ button {
   font-size: 1.15rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  animation: slideInLeft 0.6s ease-out 0.15s both;
 }
 
 .eyebrow {
@@ -86,6 +243,7 @@ button {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 0.72rem;
+  animation: fadeIn 0.8s ease-out 0.2s both;
 }
 
 .eyebrow.accent {
@@ -96,16 +254,34 @@ button {
   display: flex;
   align-items: center;
   gap: 22px;
+  animation: slideInRight 0.6s ease-out 0.1s both;
 }
 
 .nav a {
   color: rgba(236, 246, 255, 0.75);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #64f0c3, #60bdd8);
+  transition: width 0.3s ease;
 }
 
 .nav a:hover {
   color: #ffffff;
+}
+
+.nav a:hover::after {
+  width: 100%;
 }
 
 .panel {
@@ -113,6 +289,12 @@ button {
   border: 1px solid rgba(160, 214, 218, 0.15);
   border-radius: 24px;
   box-shadow: 0 30px 60px rgba(3, 10, 17, 0.42);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.panel:hover {
+  border-color: rgba(160, 214, 218, 0.3);
+  box-shadow: 0 40px 80px rgba(3, 10, 17, 0.6), 0 0 40px rgba(84, 245, 196, 0.1);
 }
 
 .hero {
@@ -120,6 +302,7 @@ button {
   grid-template-columns: 1.3fr 1fr;
   gap: 20px;
   padding: 28px;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
 }
 
 .hero-copy {
@@ -131,6 +314,11 @@ button {
   font-size: clamp(2.5rem, 5vw, 5rem);
   line-height: 0.96;
   letter-spacing: -0.06em;
+  background: linear-gradient(135deg, #a4f3e5, #9ae0c4, #7ec9ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
 }
 
 .lede {
@@ -138,6 +326,8 @@ button {
   margin-top: 20px;
   color: rgba(236, 246, 255, 0.7);
   font-size: 1.08rem;
+  animation: fadeInUp 0.8s ease-out 0.4s both;
+  line-height: 1.6;
 }
 
 .cta-row {
@@ -145,6 +335,7 @@ button {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 28px;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
 }
 
 .primary,
@@ -153,24 +344,57 @@ button {
   border-radius: 999px;
   padding: 0.9rem 1.4rem;
   font-weight: 700;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .primary {
   background: linear-gradient(135deg, #64f0c3, #60bdd8);
   color: #021b2a;
   box-shadow: 0 16px 30px rgba(74, 200, 164, 0.3);
+  animation: scaleIn 0.6s ease-out 0.55s both;
+}
+
+.primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.6s ease;
+}
+
+.primary:hover::before {
+  left: 100%;
 }
 
 .secondary {
   background: rgba(126, 148, 173, 0.12);
   border: 1px solid rgba(166, 210, 230, 0.18);
   color: #f3f9ff;
+  animation: scaleIn 0.6s ease-out 0.6s both;
 }
 
 .primary:hover,
 .secondary:hover {
+  transform: translateY(-3px);
+}
+
+.primary:active,
+.secondary:active {
   transform: translateY(-1px);
+}
+
+.primary:hover {
+  box-shadow: 0 24px 48px rgba(74, 200, 164, 0.4);
+}
+
+.secondary:hover {
+  border-color: rgba(166, 210, 230, 0.36);
+  box-shadow: 0 12px 24px rgba(74, 200, 164, 0.15);
 }
 
 .stats-grid {
@@ -188,6 +412,27 @@ button {
   border-radius: 18px;
   background: rgba(15, 28, 38, 0.9);
   border: 1px solid rgba(148, 175, 204, 0.16);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.stat-card:nth-child(1) {
+  animation-delay: 0.65s;
+}
+
+.stat-card:nth-child(2) {
+  animation-delay: 0.7s;
+}
+
+.stat-card:nth-child(3) {
+  animation-delay: 0.75s;
+}
+
+.stat-card:hover {
+  background: rgba(15, 28, 38, 1);
+  border-color: rgba(148, 175, 204, 0.32);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(84, 245, 196, 0.15);
 }
 
 .stat-card strong {
@@ -205,6 +450,7 @@ button {
   place-items: center;
   min-height: 420px;
   position: relative;
+  animation: slideInRight 0.8s ease-out 0.3s both;
 }
 
 .planet-core {
@@ -216,6 +462,7 @@ button {
   box-shadow:
     inset -26px -30px 40px rgba(3, 15, 20, 0.7),
     0 40px 90px rgba(25, 170, 144, 0.2);
+  animation: float 3s ease-in-out infinite;
 }
 
 .planet-ring {
@@ -226,11 +473,11 @@ button {
 }
 
 .ring-one {
-  transform: scale(1.2) rotate(18deg);
+  animation: rotateRing 20s linear infinite;
 }
 
 .ring-two {
-  transform: scale(1.45) rotate(-16deg);
+  animation: orbitSmall 28s linear infinite reverse;
   border-color: rgba(114, 204, 255, 0.38);
 }
 
@@ -240,6 +487,7 @@ button {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(84, 245, 196, 0.26), transparent 66%);
   filter: blur(14px);
+  animation: pulse 4s ease-in-out infinite;
 }
 
 .content-grid {
@@ -254,6 +502,15 @@ button {
 .section-block,
 .cta-banner {
   padding: 26px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.narrative {
+  animation-delay: 0.3s;
+}
+
+.features {
+  animation-delay: 0.4s;
 }
 
 .narrative h3,
@@ -280,6 +537,44 @@ button {
   border-radius: 18px;
   background: rgba(17, 30, 41, 0.8);
   border: 1px solid rgba(147, 179, 203, 0.14);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: fadeInUp 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-item:nth-child(1) {
+  animation-delay: 0.45s;
+}
+
+.feature-item:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.feature-item:nth-child(3) {
+  animation-delay: 0.55s;
+}
+
+.feature-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.feature-item:hover {
+  background: rgba(17, 30, 41, 1);
+  border-color: rgba(147, 179, 203, 0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(84, 245, 196, 0.15);
+}
+
+.feature-item:hover::before {
+  left: 100%;
 }
 
 .feature-item h4,
@@ -294,14 +589,20 @@ button {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #9ae0c4;
+  padding: 4px 8px;
+  background: rgba(154, 224, 196, 0.1);
+  border-radius: 6px;
+  animation: fadeIn 0.6s ease-out;
 }
 
 .section-block {
   margin-top: 20px;
+  animation-delay: 0.5s;
 }
 
 .section-heading {
   margin-bottom: 22px;
+  animation: fadeInUp 0.6s ease-out 0.55s both;
 }
 
 .guardian-grid {
@@ -315,6 +616,46 @@ button {
   border-radius: 20px;
   background: rgba(17, 28, 38, 0.8);
   border: 1px solid rgba(186, 211, 228, 0.12);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: fadeInUp 0.6s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.guardian-card:nth-child(1) {
+  animation-delay: 0.6s;
+}
+
+.guardian-card:nth-child(2) {
+  animation-delay: 0.65s;
+}
+
+.guardian-card:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+.guardian-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(84, 245, 196, 0.1), transparent 70%);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.guardian-card:hover {
+  background: rgba(17, 28, 38, 1);
+  border-color: rgba(186, 211, 228, 0.24);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(84, 245, 196, 0.2);
+}
+
+.guardian-card:hover::before {
+  top: 0;
+  left: 0;
 }
 
 .avatar {
@@ -326,21 +667,31 @@ button {
   background: linear-gradient(135deg, rgba(100, 240, 195, 0.9), rgba(89, 179, 216, 0.8));
   color: #022333;
   font-weight: 800;
+  transition: all 0.3s ease;
+  animation: scaleIn 0.6s ease-out;
+}
+
+.guardian-card:hover .avatar {
+  transform: scale(1.15);
+  box-shadow: 0 8px 24px rgba(84, 245, 196, 0.3);
 }
 
 .role {
   margin-top: 2px;
   color: #9ae0c4 !important;
+  animation: fadeIn 0.6s ease-out;
 }
 
 .world-panel {
   margin-top: 20px;
+  animation-delay: 0.55s;
 }
 
 .region-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  animation: fadeInUp 0.6s ease-out 0.65s both;
 }
 
 .region-pill {
@@ -349,6 +700,35 @@ button {
   background: rgba(16, 36, 45, 0.9);
   border: 1px solid rgba(122, 181, 210, 0.18);
   color: rgba(236, 246, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: scaleIn 0.4s ease-out;
+}
+
+.region-pill:nth-child(1) {
+  animation-delay: 0.68s;
+}
+
+.region-pill:nth-child(2) {
+  animation-delay: 0.71s;
+}
+
+.region-pill:nth-child(3) {
+  animation-delay: 0.74s;
+}
+
+.region-pill:nth-child(4) {
+  animation-delay: 0.77s;
+}
+
+.region-pill:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.region-pill:hover {
+  background: rgba(16, 36, 45, 1);
+  border-color: rgba(122, 181, 210, 0.36);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(84, 245, 196, 0.15);
 }
 
 .cta-banner {
@@ -357,7 +737,21 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  animation: fadeInUp 0.8s ease-out 0.7s both;
+  background: linear-gradient(135deg, rgba(11, 26, 37, 0.95) 0%, rgba(11, 26, 37, 0.8) 100%);
 }
+
+.cta-banner:hover {
+  box-shadow: 0 40px 80px rgba(84, 245, 196, 0.15);
+}
+
+.cta-banner > div {
+  flex: 1;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
 
 @media (max-width: 840px) {
   .topbar,
@@ -387,5 +781,23 @@ button {
   .hero-copy h2 {
     font-size: 2.6rem;
   }
+
+  .cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
+/* ============================================================================
+   REDUCED MOTION SUPPORT
+   ============================================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
