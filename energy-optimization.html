@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Guardian of Terra Energy Optimization Guide — Learn how to reduce energy consumption and protect the planet's resources."
+    />
+    <title>Energy Optimization Guide | Guardian of Terra</title>
+    <style>
+      :root {
+        font-family: Inter, 'Segoe UI', sans-serif;
+        line-height: 1.5;
+        font-weight: 400;
+        color: #ecf6ff;
+        background: radial-gradient(circle at top, rgba(41, 151, 142, 0.28), transparent 28%),
+          linear-gradient(180deg, #040b14 0%, #071622 100%);
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color-scheme: dark;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        min-height: 100vh;
+        background: transparent;
+      }
+
+      /* ============================================================================
+         ANIMATIONS
+         ============================================================================ */
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.6;
+        }
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      @keyframes glow {
+        0%, 100% {
+          box-shadow: 0 0 20px rgba(84, 245, 196, 0.4), 0 20px 40px rgba(3, 10, 17, 0.42);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(84, 245, 196, 0.6), 0 20px 60px rgba(3, 10, 17, 0.6);
+        }
+      }
+
+      /* ============================================================================
+         LAYOUT
+         ============================================================================ */
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        animation: fadeIn 0.8s ease-out;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 60px;
+        animation: fadeInUp 0.8s ease-out 0.1s both;
+      }
+
+      .breadcrumb {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        color: rgba(236, 246, 255, 0.6);
+      }
+
+      .breadcrumb a {
+        color: #9ae0c4;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .breadcrumb a:hover {
+        color: #64f0c3;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        line-height: 1.2;
+        letter-spacing: -0.03em;
+        background: linear-gradient(135deg, #a4f3e5, #9ae0c4, #7ec9ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .header p {
+        margin: 20px 0 0;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.15rem;
+        color: rgba(236, 246, 255, 0.75);
+      }
+
+      .eyebrow {
+        color: #86d8d1;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        margin-bottom: 12px;
+      }
+
+      /* ============================================================================
+         CARDS & SECTIONS
+         ============================================================================ */
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 24px;
+        margin: 40px 0;
+      }
+
+      .card {
+        background: rgba(11, 26, 37, 0.9);
+        border: 1px solid rgba(160, 214, 218, 0.15);
+        border-radius: 20px;
+        padding: 28px;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: fadeInUp 0.6s ease-out;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+
+      .card:nth-child(2) {
+        animation-delay: 0.25s;
+      }
+
+      .card:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+
+      .card:nth-child(4) {
+        animation-delay: 0.35s;
+      }
+
+      .card:nth-child(5) {
+        animation-delay: 0.4s;
+      }
+
+      .card:nth-child(6) {
+        animation-delay: 0.45s;
+      }
+
+      .card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(84, 245, 196, 0.1), transparent 70%);
+        transition: all 0.4s ease;
+        pointer-events: none;
+      }
+
+      .card:hover {
+        background: rgba(11, 26, 37, 1);
+        border-color: rgba(160, 214, 218, 0.3);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(84, 245, 196, 0.2);
+      }
+
+      .card:hover::before {
+        top: 0;
+        left: 0;
+      }
+
+      .card-icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .card h3 {
+        margin: 0 0 12px;
+        font-size: 1.4rem;
+        color: #a4f3e5;
+      }
+
+      .card p {
+        margin: 0;
+        color: rgba(236, 246, 255, 0.75);
+        line-height: 1.6;
+      }
+
+      /* ============================================================================
+         STATS SECTION
+         ============================================================================ */
+
+      .stats-section {
+        background: rgba(11, 26, 37, 0.9);
+        border: 1px solid rgba(160, 214, 218, 0.15);
+        border-radius: 24px;
+        padding: 40px;
+        margin: 60px 0;
+        animation: fadeInUp 0.8s ease-out 0.3s both;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .stat-item {
+        text-align: center;
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .stat-item:nth-child(1) {
+        animation-delay: 0.4s;
+      }
+
+      .stat-item:nth-child(2) {
+        animation-delay: 0.45s;
+      }
+
+      .stat-item:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+
+      .stat-value {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #64f0c3;
+        margin-bottom: 8px;
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      .stat-label {
+        font-size: 0.95rem;
+        color: rgba(236, 246, 255, 0.7);
+      }
+
+      /* ============================================================================
+         TIPS SECTION
+         ============================================================================ */
+
+      .tips-section {
+        margin: 60px 0;
+      }
+
+      .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .tip-card {
+        background: linear-gradient(135deg, rgba(11, 26, 37, 0.95), rgba(17, 30, 41, 0.9));
+        border: 1px solid rgba(147, 179, 203, 0.14);
+        border-radius: 16px;
+        padding: 20px;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        animation: fadeInUp 0.6s ease-out;
+        cursor: pointer;
+      }
+
+      .tip-card:nth-child(1) {
+        animation-delay: 0.35s;
+      }
+
+      .tip-card:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+
+      .tip-card:nth-child(3) {
+        animation-delay: 0.45s;
+      }
+
+      .tip-card:nth-child(4) {
+        animation-delay: 0.5s;
+      }
+
+      .tip-card:nth-child(5) {
+        animation-delay: 0.55s;
+      }
+
+      .tip-card:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      .tip-card:hover {
+        background: linear-gradient(135deg, rgba(11, 26, 37, 1), rgba(17, 30, 41, 1));
+        border-color: rgba(147, 179, 203, 0.28);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(84, 245, 196, 0.15);
+      }
+
+      .tip-number {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #64f0c3, #60bdd8);
+        color: #021b2a;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+        margin-bottom: 12px;
+      }
+
+      .tip-card h4 {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+        color: #a4f3e5;
+      }
+
+      .tip-card p {
+        margin: 0;
+        color: rgba(236, 246, 255, 0.7);
+        font-size: 0.95rem;
+      }
+
+      /* ============================================================================
+         CHECKLIST SECTION
+         ============================================================================ */
+
+      .checklist-section {
+        background: rgba(11, 26, 37, 0.9);
+        border: 1px solid rgba(160, 214, 218, 0.15);
+        border-radius: 24px;
+        padding: 40px;
+        margin: 60px 0;
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+      }
+
+      .checklist {
+        display: grid;
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 16px;
+        background: rgba(17, 28, 38, 0.8);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.5s ease-out;
+        cursor: pointer;
+      }
+
+      .checklist-item:nth-child(1) {
+        animation-delay: 0.45s;
+      }
+
+      .checklist-item:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+
+      .checklist-item:nth-child(3) {
+        animation-delay: 0.55s;
+      }
+
+      .checklist-item:nth-child(4) {
+        animation-delay: 0.6s;
+      }
+
+      .checklist-item:hover {
+        background: rgba(17, 28, 38, 1);
+        transform: translateX(4px);
+      }
+
+      .checklist-icon {
+        font-size: 1.5rem;
+        min-width: 24px;
+        animation: float 2s ease-in-out infinite;
+      }
+
+      .checklist-text h4 {
+        margin: 0 0 4px;
+        color: #a4f3e5;
+      }
+
+      .checklist-text p {
+        margin: 0;
+        color: rgba(236, 246, 255, 0.7);
+        font-size: 0.9rem;
+      }
+
+      /* ============================================================================
+         CTA SECTION
+         ============================================================================ */
+
+      .cta-section {
+        background: linear-gradient(135deg, rgba(11, 26, 37, 0.95), rgba(17, 30, 41, 0.9));
+        border: 1px solid rgba(160, 214, 218, 0.15);
+        border-radius: 24px;
+        padding: 50px 40px;
+        text-align: center;
+        margin: 80px 0 60px;
+        animation: fadeInUp 0.8s ease-out 0.5s both;
+      }
+
+      .cta-section h2 {
+        margin: 0 0 20px;
+        font-size: 2rem;
+        color: #a4f3e5;
+      }
+
+      .cta-section p {
+        color: rgba(236, 246, 255, 0.75);
+        margin: 0 0 30px;
+        font-size: 1.05rem;
+      }
+
+      .button {
+        display: inline-block;
+        padding: 12px 32px;
+        border-radius: 999px;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .button.primary {
+        background: linear-gradient(135deg, #64f0c3, #60bdd8);
+        color: #021b2a;
+        box-shadow: 0 12px 30px rgba(74, 200, 164, 0.3);
+      }
+
+      .button.primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 48px rgba(74, 200, 164, 0.4);
+      }
+
+      .button.secondary {
+        background: rgba(126, 148, 173, 0.12);
+        border: 1px solid rgba(166, 210, 230, 0.18);
+        color: #f3f9ff;
+        margin-left: 12px;
+      }
+
+      .button.secondary:hover {
+        background: rgba(126, 148, 173, 0.2);
+        border-color: rgba(166, 210, 230, 0.36);
+        transform: translateY(-3px);
+      }
+
+      /* ============================================================================
+         FOOTER
+         ============================================================================ */
+
+      .footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: rgba(236, 246, 255, 0.5);
+        border-top: 1px solid rgba(160, 214, 218, 0.1);
+        margin-top: 60px;
+        animation: fadeIn 0.8s ease-out 0.6s both;
+      }
+
+      .footer a {
+        color: #9ae0c4;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: #64f0c3;
+      }
+
+      /* ============================================================================
+         RESPONSIVE
+         ============================================================================ */
+
+      @media (max-width: 768px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tips-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .card {
+          padding: 20px;
+        }
+
+        .checklist-section,
+        .stats-section {
+          padding: 24px;
+        }
+
+        .cta-section {
+          padding: 30px 24px;
+        }
+
+        .button.secondary {
+          margin-left: 0;
+          margin-top: 12px;
+          display: block;
+          width: 100%;
+        }
+
+        .button.primary {
+          display: block;
+          width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="breadcrumb">
+          <a href="/">Guardian of Terra</a>
+          <span>/</span>
+          <span>Energy Optimization</span>
+        </div>
+        <p class="eyebrow">Sustainable Living</p>
+        <h1>Optimize Your Energy Usage</h1>
+        <p>Learn how to reduce energy consumption, lower your carbon footprint, and contribute to a sustainable future for Terra.</p>
+      </div>
+
+      <!-- Why It Matters -->
+      <section class="grid">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Reduce Costs</h3>
+          <p>Lower your energy bills by 20-40% through simple optimization techniques and smart habits.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🌍</div>
+          <h3>Protect the Planet</h3>
+          <p>Every kilowatt-hour saved reduces carbon emissions and helps preserve ecosystems for future generations.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💪</div>
+          <h3>Increase Comfort</h3>
+          <p>Better energy management creates more comfortable living spaces with optimal temperature and lighting.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔋</div>
+          <h3>Energy Independence</h3>
+          <p>Reduced consumption means fewer power grid demands and more resilience during outages.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📊</div>
+          <h3>Track Progress</h3>
+          <p>Monitor your energy usage in real-time and celebrate milestones as you build better habits.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🏡</div>
+          <h3>Home Value</h3>
+          <p>Energy-efficient homes are more attractive to buyers and command higher market values.</p>
+        </div>
+      </section>
+
+      <!-- Impact Stats -->
+      <section class="stats-section">
+        <h2>The Impact of Energy Optimization</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value">40%</div>
+            <div class="stat-label">Average energy reduction possible</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">$1200</div>
+            <div class="stat-label">Annual savings per household</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">5 tons</div>
+            <div class="stat-label">CO₂ prevented annually</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Energy-Saving Tips -->
+      <section class="tips-section">
+        <h2 style="text-align: center; margin-bottom: 40px;">Practical Energy-Saving Tips</h2>
+        <div class="tips-grid">
+          <div class="tip-card">
+            <div class="tip-number">1</div>
+            <h4>Smart Thermostat</h4>
+            <p>Install a programmable thermostat to automatically adjust temperatures based on your schedule and preferences.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-number">2</div>
+            <h4>LED Lighting</h4>
+            <p>Replace traditional bulbs with LED lights that use 75% less energy and last 25 times longer.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-number">3</div>
+            <h4>Unplug Devices</h4>
+            <p>Eliminate phantom power drain by unplugging devices when not in use or using power strips with switches.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-number">4</div>
+            <h4>Seal Air Leaks</h4>
+            <p>Caulk and weatherstrip windows and doors to prevent heated or cooled air from escaping your home.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-number">5</div>
+            <h4>Water Heating</h4>
+            <p>Lower water heater temperature to 120°F (49°C) and insulate hot water pipes to reduce heat loss.</p>
+          </div>
+          <div class="tip-card">
+            <div class="tip-number">6</div>
+            <h4>Appliance Efficiency</h4>
+            <p>Choose ENERGY STAR certified appliances and run full loads of laundry and dishes to maximize efficiency.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action Checklist -->
+      <section class="checklist-section">
+        <h2>Your Energy Optimization Checklist</h2>
+        <div class="checklist">
+          <div class="checklist-item">
+            <div class="checklist-icon">✓</div>
+            <div class="checklist-text">
+              <h4>Energy Audit</h4>
+              <p>Conduct a home energy audit to identify where you're losing the most energy and money.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">✓</div>
+            <div class="checklist-text">
+              <h4>Insulation Upgrade</h4>
+              <p>Add or improve insulation in your attic, basement, and walls to maintain consistent indoor temperatures.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">✓</div>
+            <div class="checklist-text">
+              <h4>HVAC Maintenance</h4>
+              <p>Replace filters quarterly, service your heating and cooling system annually, and clean vents regularly.</p>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-icon">✓</div>
+            <div class="checklist-text">
+              <h4>Renewable Energy</h4>
+              <p>Explore solar panels, wind turbines, or joining community renewable energy programs in your area.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="cta-section">
+        <h2>Ready to Protect Terra's Energy?</h2>
+        <p>Start your energy optimization journey today and make a real difference for the planet.</p>
+        <button class="button primary">Get Started Now</button>
+        <button class="button secondary">Learn More</button>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>&copy; 2026 Guardian of Terra. Protecting the planet, one watt at a time.</p>
+        <p>
+          <a href="/">Home</a> • <a href="/energy-optimization.html">Energy Guide</a> • <a href="/contact">Contact</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
