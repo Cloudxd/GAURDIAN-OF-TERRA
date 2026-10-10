@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Guardian of Terra favicon">
+  <defs>
+    <linearGradient id="g" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#7ef5cf"/>
+      <stop offset="100%" stop-color="#64aede"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#061922"/>
+  <circle cx="32" cy="32" r="20" fill="url(#g)" opacity="0.95"/>
+  <path d="M32 13L45 20V30L32 50L19 30V20L32 13Z" fill="none" stroke="#e8fffb" stroke-width="3"/>
+  <circle cx="32" cy="32" r="6" fill="#e8fffb"/>
+</svg>
+
